@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Bills - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Chemical Vendor Bills & Payables</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Bill #</th>
+                                    <th>Supplier Name</th>
+                                    <th>Bill Date</th>
+                                    <th>Due Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Paid Amount</th>
+                                    <th>Balance Due</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bills-tbody">
+                                <tr><td colspan="9" style="text-align:center;">Loading vendor bills...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Vendor Payment Modal -->
+    <div class="modal-overlay" id="vendorPaymentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Record Vendor Payment</h3>
+                <button class="logout-btn" onclick="closeModal('vendorPaymentModal')">✕</button>
+            </div>
+            <form id="vendorPaymentForm">
+                <div class="modal-body">
+                    <input type="hidden" id="vPayBillId">
+                    <div class="form-group">
+                        <label class="form-label">Vendor Bill #</label>
+                        <input type="text" id="vPayBillNum" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Payment Amount ($) *</label>
+                        <input type="number" id="vPayAmount" class="form-control" required step="0.01">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Payment Method *</label>
+                            <select id="vPayMethod" class="form-control" required>
+                                <option value="BANK">Bank Transfer</option>
+                                <option value="CASH">Cash</option>
+                                <option value="ONLINE_TRANSFER">Online Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reference Number</label>
+                            <input type="text" id="vPayRef" class="form-control" placeholder="TXN-998811">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('vendorPaymentModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Record Vendor Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/purchases.js"></script>
+</body>
+</html>

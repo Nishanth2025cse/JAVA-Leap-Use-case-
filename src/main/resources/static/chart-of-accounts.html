@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart of Accounts - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Municipal Accounting - Chart of Accounts</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Account Code</th>
+                                    <th>Account Name</th>
+                                    <th>Account Type</th>
+                                    <th>Opening Balance</th>
+                                    <th>Current Balance</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accounts-tbody">
+                                <tr><td colspan="6" style="text-align:center;">Loading chart of accounts...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/budgets.js"></script>
+</body>
+</html>

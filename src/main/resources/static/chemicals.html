@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Inventory - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <div class="search-filter-box">
+                        <input type="text" id="chemicalSearchInput" class="search-input" placeholder="Search chemical agent name or code...">
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" onclick="openAddStockModal()">+ Add Chemical Stock</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Chemical Purification Inventory & Stock Levels</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Chemical Agent</th>
+                                    <th>Code</th>
+                                    <th>Stock Quantity</th>
+                                    <th>Reorder Threshold</th>
+                                    <th>Unit Cost</th>
+                                    <th>Total Inventory Value</th>
+                                    <th>Stock Alert</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="chemicals-tbody">
+                                <tr><td colspan="9" style="text-align:center;">Loading chemical inventory...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Stock Modal -->
+    <div class="modal-overlay" id="stockModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Add Chemical Stock</h3>
+                <button class="logout-btn" onclick="closeModal('stockModal')">✕</button>
+            </div>
+            <form id="stockForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Chemical Product *</label>
+                        <select id="stockProductId" class="form-control" required></select>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Quantity to Add *</label>
+                            <input type="number" id="stockQuantity" class="form-control" required min="1" step="0.1" value="50">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Unit Cost ($)</label>
+                            <input type="number" id="stockUnitCost" class="form-control" step="0.01" placeholder="Optional cost override">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('stockModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Update Inventory Qty</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/chemicals.js"></script>
+</body>
+</html>

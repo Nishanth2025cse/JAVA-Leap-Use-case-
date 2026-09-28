@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Invoices - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Municipal Customer Billing & Environmental Violation Invoicing</h2>
+                    <button class="btn btn-primary" onclick="openInvoiceModal()">+ Generate Customer Invoice</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Customer Invoices Breakdown (Treatment Fees + Compliance Surcharges)</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Invoice #</th>
+                                    <th>Factory Name</th>
+                                    <th>Base Treatment</th>
+                                    <th>Compliance Surcharge</th>
+                                    <th>Tax (18%)</th>
+                                    <th>Total Amount</th>
+                                    <th>Paid Amount</th>
+                                    <th>Balance Due</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="invoices-tbody">
+                                <tr><td colspan="10" style="text-align:center;">Loading customer invoices...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Generate Customer Invoice Modal -->
+    <div class="modal-overlay" id="invoiceModal">
+        <div class="modal-card" style="max-width: 650px;">
+            <div class="modal-header">
+                <h3 class="card-title">Generate Customer Invoice</h3>
+                <button class="logout-btn" onclick="closeModal('invoiceModal')">✕</button>
+            </div>
+            <form id="invoiceForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Industrial Factory *</label>
+                        <select id="invFactoryId" class="form-control" required onchange="onInvoiceFactoryChange()"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Linked Service Order (Optional)</label>
+                        <select id="invServiceOrderId" class="form-control">
+                            <option value="">-- Direct Invoice / Standard Fee --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Base Treatment Processing Fee ($) *</label>
+                        <input type="number" id="invTreatmentAmount" class="form-control" required step="0.01" value="5000.00">
+                    </div>
+
+                    <!-- Live Violation Surcharge Preview Box -->
+                    <div id="violationPreviewBox" style="padding: 16px; background-color: var(--warning-bg); border: 1px solid var(--warning); border-radius: var(--radius-md); margin-top: 12px; display: none;">
+                        <strong style="color: #b45309; display: flex; align-items: center; gap: 6px;">
+                            ⚠️ Environmental Violation Fine Surcharge Detected!
+                        </strong>
+                        <div id="violationPreviewText" style="font-size: 13px; color: var(--text-primary); margin-top: 6px;"></div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('invoiceModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Generate Invoice 🧾</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer Payment Modal -->
+    <div class="modal-overlay" id="custPaymentModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Record Customer Payment</h3>
+                <button class="logout-btn" onclick="closeModal('custPaymentModal')">✕</button>
+            </div>
+            <form id="custPaymentForm">
+                <div class="modal-body">
+                    <input type="hidden" id="cPayInvoiceId">
+                    <div class="form-group">
+                        <label class="form-label">Invoice #</label>
+                        <input type="text" id="cPayInvoiceNum" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Payment Amount ($) *</label>
+                        <input type="number" id="cPayAmount" class="form-control" required step="0.01">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Payment Method *</label>
+                            <select id="cPayMethod" class="form-control" required>
+                                <option value="BANK">Bank Transfer</option>
+                                <option value="CASH">Cash</option>
+                                <option value="ONLINE_TRANSFER">Online Transfer</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Reference Number</label>
+                            <input type="text" id="cPayRef" class="form-control" placeholder="REF-88992">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('custPaymentModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Record Payment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/invoices.js"></script>
+</body>
+</html>

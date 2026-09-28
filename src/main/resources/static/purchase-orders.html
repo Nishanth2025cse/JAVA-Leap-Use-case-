@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Orders - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Chemical Chemical Procurement Purchase Orders</h2>
+                    <button class="btn btn-primary" onclick="openPOModal()">+ Create Purchase Order</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Chemical Agent Purchase Orders</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>PO ID</th>
+                                    <th>Supplier Name</th>
+                                    <th>Order Date</th>
+                                    <th>Total Amount</th>
+                                    <th>Status</th>
+                                    <th>Actions / Status Update</th>
+                                </tr>
+                            </thead>
+                            <tbody id="po-tbody">
+                                <tr><td colspan="6" style="text-align:center;">Loading purchase orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create PO Modal -->
+    <div class="modal-overlay" id="poModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Create Chemical Purchase Order</h3>
+                <button class="logout-btn" onclick="closeModal('poModal')">✕</button>
+            </div>
+            <form id="poForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Chemical Supplier *</label>
+                        <select id="poSupplierId" class="form-control" required></select>
+                    </div>
+
+                    <div style="border: 1px solid var(--border); padding: 16px; border-radius: var(--radius-md); margin-bottom: 16px; background-color: #f8fafc;">
+                        <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--text-primary);">Item Line Detail:</h4>
+                        <div class="form-group">
+                            <label class="form-label">Select Chemical Product *</label>
+                            <select id="poProductId" class="form-control" required></select>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Quantity *</label>
+                                <input type="number" id="poQuantity" class="form-control" required min="1" step="0.1" value="100">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Unit Price ($) *</label>
+                                <input type="number" id="poUnitPrice" class="form-control" required step="0.01" value="150.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Remarks</label>
+                        <input type="text" id="poRemarks" class="form-control" placeholder="Procurement details">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('poModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Generate Purchase Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/purchases.js"></script>
+</body>
+</html>

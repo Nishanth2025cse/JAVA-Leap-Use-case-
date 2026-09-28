@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product & Service Master - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Products & Services Master Catalog</h2>
+                    <button class="btn btn-primary" onclick="openProductModal()">+ Add Product / Service</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Chemical Goods & Municipal Purification Services</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product Name</th>
+                                    <th>Product Code</th>
+                                    <th>Type</th>
+                                    <th>Unit</th>
+                                    <th>Unit Price</th>
+                                    <th>Tax %</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="products-tbody">
+                                <tr><td colspan="9" style="text-align:center;">Loading product catalog...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title" id="productModalTitle">Add Product / Service</h3>
+                <button class="logout-btn" onclick="closeModal('productModal')">✕</button>
+            </div>
+            <form id="productForm">
+                <div class="modal-body">
+                    <input type="hidden" id="productId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Product Name *</label>
+                            <input type="text" id="productName" class="form-control" required placeholder="Chlorine Chemical Agent">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Product Code *</label>
+                            <input type="text" id="productCode" class="form-control" required placeholder="CHM-CLR-01">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Type *</label>
+                            <select id="productType" class="form-control" required>
+                                <option value="GOODS">GOODS (Chemical Agents)</option>
+                                <option value="SERVICE">SERVICE (Purification Services)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Unit of Measure</label>
+                            <input type="text" id="productUnit" class="form-control" placeholder="Kg / Litre / Month">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Unit Price ($) *</label>
+                            <input type="number" id="productPrice" class="form-control" required step="0.01" value="150.00">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tax Percentage (%) *</label>
+                            <input type="number" id="productTax" class="form-control" required step="0.1" value="18.0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" id="productDescription" class="form-control" placeholder="Description">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('productModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+</body>
+</html>

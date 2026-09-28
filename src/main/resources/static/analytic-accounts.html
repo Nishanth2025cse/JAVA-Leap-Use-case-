@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treatment Facilities - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Municipal Wastewater Treatment Plant Facilities</h2>
+                    <button class="btn btn-primary" onclick="openFacilityModal()">+ Add Treatment Facility</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Analytic Facility Registry</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Facility Name</th>
+                                    <th>Location</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="facility-tbody">
+                                <tr>
+                                    <td colspan="5" style="text-align:center;">Loading treatment facilities...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Facility Modal -->
+    <div class="modal-overlay" id="facilityModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Add Treatment Facility</h3>
+                <button class="logout-btn" onclick="closeModal('facilityModal')">✕</button>
+            </div>
+            <form id="facilityForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Facility Name *</label>
+                        <input type="text" id="facilityName" class="form-control" required
+                            placeholder="East Industrial Effluent Plant">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Location</label>
+                        <input type="text" id="facilityLocation" class="form-control"
+                            placeholder="East Zone Industrial Corridor">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Description</label>
+                        <input type="text" id="facilityDesc" class="form-control" placeholder="Plant details">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                        onclick="closeModal('facilityModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Facility</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/budgets.js"></script>
+</body>
+
+</html>

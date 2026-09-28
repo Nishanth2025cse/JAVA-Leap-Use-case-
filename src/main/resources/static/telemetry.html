@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COD Telemetry - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Real-Time Industrial Effluent Telemetry Stream</h2>
+                    <button class="btn btn-primary" onclick="openTelemetryModal()">+ Submit IoT Telemetry Reading</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Chemical Oxygen Demand (COD) Discharge Telemetry Log</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Factory</th>
+                                    <th>COD Measured Value</th>
+                                    <th>Permitted Threshold</th>
+                                    <th>Sensor Location</th>
+                                    <th>Measurement Timestamp</th>
+                                    <th>Compliance Result</th>
+                                    <th>Surcharge Fine</th>
+                                </tr>
+                            </thead>
+                            <tbody id="telemetry-tbody">
+                                <tr><td colspan="8" style="text-align:center;">Loading telemetry log...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Submit Telemetry Modal -->
+    <div class="modal-overlay" id="telemetryModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Submit Industrial Discharge Telemetry</h3>
+                <button class="logout-btn" onclick="closeModal('telemetryModal')">✕</button>
+            </div>
+            <form id="telemetryForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Industrial Factory *</label>
+                        <select id="telemetryFactoryId" class="form-control" required>
+                            <option value="">-- Select Factory --</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Measured COD Value (mg/L) *</label>
+                            <input type="number" id="codValue" class="form-control" required step="0.1" placeholder="e.g. 320.0">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sensor Location</label>
+                            <input type="text" id="telemetryLocation" class="form-control" placeholder="Outfall Sensor 1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Remarks / Sensor Diagnostics</label>
+                        <input type="text" id="telemetryRemarks" class="form-control" placeholder="Telemetry notes">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('telemetryModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Transmit Telemetry 🚀</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/telemetry.js"></script>
+</body>
+</html>

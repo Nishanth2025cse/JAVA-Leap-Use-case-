@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Environmental Settings - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="card" style="max-width: 600px;">
+                    <div class="card-header">
+                        <h2 class="card-title">Environmental COD Compliance & Fine Calculation Settings</h2>
+                    </div>
+                    <form id="settingsForm">
+                        <div class="form-group">
+                            <label class="form-label">System Default Permitted COD Threshold Limit (mg/L) *</label>
+                            <input type="number" id="defaultCodLimit" class="form-control" required step="0.1" value="250.0">
+                            <small style="color:var(--text-secondary);">Used when an industrial plant does not have an explicit custom limit specified.</small>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="form-label">Compliance Fine Rate per Excess COD Unit ($ / mg/L) *</label>
+                            <input type="number" id="fineRate" class="form-control" required step="0.01" value="50.00">
+                            <small style="color:var(--text-secondary);">Fine Formula: <code>fine = (measured_COD - permitted_limit) * fineRate</code></small>
+                        </div>
+
+                        <div class="form-group" style="margin-top: 20px;">
+                            <label class="form-label">Currency Symbol *</label>
+                            <input type="text" id="currency" class="form-control" required value="$">
+                        </div>
+
+                        <div style="margin-top: 28px;">
+                            <button type="submit" class="btn btn-primary">Save Settings Configuration ⚙️</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

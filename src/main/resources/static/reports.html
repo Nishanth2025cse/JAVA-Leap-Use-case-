@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial & Environmental Reports - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <!-- Report Tabs -->
+                <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--border); padding-bottom: 12px;">
+                    <button class="btn btn-primary" id="btn-tab-bs" onclick="switchReportTab('balance-sheet')">Balance Sheet</button>
+                    <button class="btn btn-secondary" id="btn-tab-pl" onclick="switchReportTab('profit-loss')">Profit & Loss Statement</button>
+                    <button class="btn btn-secondary" id="btn-tab-bud" onclick="switchReportTab('budget')">Budget Performance Report</button>
+                    <button class="btn btn-secondary" id="btn-tab-comp" onclick="switchReportTab('compliance')">Environmental Compliance Report</button>
+                </div>
+
+                <!-- Report Content Display Box -->
+                <div id="report-content-container">
+                    <div class="card">
+                        <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+                            Loading report data...
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/reports.js"></script>
+</body>
+</html>

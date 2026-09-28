@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Factories - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <div class="search-filter-box">
+                        <input type="text" id="factorySearchInput" class="search-input" placeholder="Search factory name, reg number, city...">
+                    </div>
+                    <button class="btn btn-primary" onclick="openFactoryModal()">+ Add New Industrial Plant</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Registered Industrial Plants & Permitted COD Thresholds</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Factory Name</th>
+                                    <th>Registration No.</th>
+                                    <th>Industry Type</th>
+                                    <th>City</th>
+                                    <th>Permitted COD Limit</th>
+                                    <th>Compliance Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="factories-tbody">
+                                <tr><td colspan="8" style="text-align:center;">Loading factories...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Factory Modal -->
+    <div class="modal-overlay" id="factoryModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title" id="factoryModalTitle">Add Industrial Plant</h3>
+                <button class="logout-btn" onclick="closeModal('factoryModal')">✕</button>
+            </div>
+            <form id="factoryForm">
+                <div class="modal-body">
+                    <input type="hidden" id="factoryId">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Factory Name *</label>
+                            <input type="text" id="factoryName" class="form-control" required placeholder="e.g. Apex Dyeing Works">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Registration Number *</label>
+                            <input type="text" id="registrationNumber" class="form-control" required placeholder="e.g. REG-2026-99">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Contact Person</label>
+                            <input type="text" id="contactPerson" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone</label>
+                            <input type="text" id="phone" class="form-control" placeholder="+91-...">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="info@factory.com">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">City</label>
+                            <input type="text" id="city" class="form-control" placeholder="Coimbatore">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Industry Type</label>
+                            <input type="text" id="industryType" class="form-control" placeholder="Textile / Chemical">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Permitted COD Limit (mg/L) *</label>
+                            <input type="number" id="permittedCodLimit" class="form-control" required value="250" step="0.1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Address</label>
+                        <input type="text" id="address" class="form-control" placeholder="Factory location street address">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('factoryModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Industrial Plant</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/factories.js"></script>
+</body>
+</html>

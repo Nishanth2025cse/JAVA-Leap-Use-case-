@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Allocations - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Municipal Treatment Plant Budget Allocations</h2>
+                    <button class="btn btn-primary" onclick="openBudgetModal()">+ Create Budget Allocation</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Treatment Facility Budgets & Operational Spending Track</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Budget ID</th>
+                                    <th>Treatment Facility</th>
+                                    <th>Financial Year</th>
+                                    <th>Allocated Budget</th>
+                                    <th>Actual Spending</th>
+                                    <th>Remaining Balance</th>
+                                    <th>Utilization %</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="budgets-tbody">
+                                <tr><td colspan="8" style="text-align:center;">Loading budget allocations...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Budget Modal -->
+    <div class="modal-overlay" id="budgetModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Allocate Facility Budget</h3>
+                <button class="logout-btn" onclick="closeModal('budgetModal')">✕</button>
+            </div>
+            <form id="budgetForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Treatment Facility *</label>
+                        <select id="bFacilityId" class="form-control" required></select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Financial Year *</label>
+                            <input type="text" id="bYear" class="form-control" required value="2026-2027">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Allocated Amount ($) *</label>
+                            <input type="number" id="bAllocated" class="form-control" required step="1000" value="100000">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('budgetModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Allocation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/budgets.js"></script>
+</body>
+</html>

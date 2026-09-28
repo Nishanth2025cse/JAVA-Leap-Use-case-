@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Municipal Waste Water & Effluent Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Container -->
+        <div id="sidebar-container"></div>
+
+        <!-- Main Wrapper -->
+        <div class="main-wrapper">
+            <!-- Top Navbar Container -->
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <!-- Top Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="card-metric">
+                        <div class="metric-icon icon-blue">🏭</div>
+                        <div class="metric-info">
+                            <h3>Industrial Plants</h3>
+                            <div class="metric-value" id="kpi-factories">0</div>
+                            <div class="metric-subtext">Monitored Facilities</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-teal">📡</div>
+                        <div class="metric-info">
+                            <h3>Today's COD Telemetry</h3>
+                            <div class="metric-value" id="kpi-cod-readings">0</div>
+                            <div class="metric-subtext">Sensor Readings</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-red">⚠️</div>
+                        <div class="metric-info">
+                            <h3>Non-Compliant</h3>
+                            <div class="metric-value" id="kpi-non-compliant">0</div>
+                            <div class="metric-subtext">Active Exceedances</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-amber">🧾</div>
+                        <div class="metric-info">
+                            <h3>Pending Invoices</h3>
+                            <div class="metric-value" id="kpi-pending-invoices">0</div>
+                            <div class="metric-subtext">Customer Receivables</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-purple">🧪</div>
+                        <div class="metric-info">
+                            <h3>Chemical Low Stock</h3>
+                            <div class="metric-value" id="kpi-low-stock">0</div>
+                            <div class="metric-subtext" id="kpi-low-stock-sub">Reorder Alerts</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-green">💰</div>
+                        <div class="metric-info">
+                            <h3>Total Fines Levied</h3>
+                            <div class="metric-value" id="kpi-total-fines">$0.00</div>
+                            <div class="metric-subtext">Environmental Surcharges</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-blue">🏗️</div>
+                        <div class="metric-info">
+                            <h3>Budget Utilized</h3>
+                            <div class="metric-value" id="kpi-budget-util">0%</div>
+                            <div class="metric-subtext">Facility Allocation</div>
+                        </div>
+                    </div>
+
+                    <div class="card-metric">
+                        <div class="metric-icon icon-amber">📄</div>
+                        <div class="metric-info">
+                            <h3>Pending Payables</h3>
+                            <div class="metric-value" id="kpi-pending-bills">$0.00</div>
+                            <div class="metric-subtext">Vendor Bills</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="dashboard-grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Real-Time COD Telemetry Exceedance Trends</h2>
+                        </div>
+                        <div style="height: 280px;">
+                            <canvas id="telemetryChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Treatment Revenue vs Fines</h2>
+                        </div>
+                        <div style="height: 280px;">
+                            <canvas id="financialChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Tables Grid -->
+                <div class="dashboard-grid-2" style="margin-top: 24px;">
+                    <!-- Recent Telemetry -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Recent COD Discharge Readings</h2>
+                            <a href="telemetry.html" class="btn btn-secondary btn-sm">View All ➔</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factory</th>
+                                        <th>COD Value</th>
+                                        <th>Limit</th>
+                                        <th>Status</th>
+                                        <th>Fine Surcharge</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-telemetry-tbody">
+                                    <tr><td colspan="5" style="text-align:center;">Loading telemetry data...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Recent Violations -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Environmental Violations</h2>
+                            <a href="violations.html" class="btn btn-secondary btn-sm">View All ➔</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Factory</th>
+                                        <th>Excess COD</th>
+                                        <th>Fine Amount</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-violations-tbody">
+                                    <tr><td colspan="4" style="text-align:center;">Loading violation data...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Low Stock & Invoices -->
+                <div class="dashboard-grid-2">
+                    <!-- Low Stock Alerts -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Chemical Inventory Low Stock Alerts</h2>
+                            <a href="chemicals.html" class="btn btn-secondary btn-sm">Manage Inventory ➔</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Chemical Agent</th>
+                                        <th>Stock Qty</th>
+                                        <th>Reorder Level</th>
+                                        <th>Alert Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="low-stock-tbody">
+                                    <tr><td colspan="4" style="text-align:center;">Loading stock data...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Pending Customer Invoices -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Pending Customer Invoices</h2>
+                            <a href="customer-invoices.html" class="btn btn-secondary btn-sm">View Invoices ➔</a>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>Invoice #</th>
+                                        <th>Factory</th>
+                                        <th>Total</th>
+                                        <th>Balance</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pending-invoices-tbody">
+                                    <tr><td colspan="4" style="text-align:center;">Loading invoices...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

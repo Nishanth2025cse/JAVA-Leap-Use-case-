@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Orders - Waste Water Platform</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <div id="sidebar-container"></div>
+        <div class="main-wrapper">
+            <div id="top-navbar-container"></div>
+
+            <div class="content-body">
+                <div class="action-header">
+                    <h2>Industrial Wastewater Purification Service Orders</h2>
+                    <button class="btn btn-primary" onclick="openSOModal()">+ Issue Service Order</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Active Service Orders</h2>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>SO ID</th>
+                                    <th>Factory Name</th>
+                                    <th>Order Date</th>
+                                    <th>Service Type</th>
+                                    <th>Quantity</th>
+                                    <th>Unit Price</th>
+                                    <th>Total Service Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="so-tbody">
+                                <tr><td colspan="8" style="text-align:center;">Loading service orders...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Service Order Modal -->
+    <div class="modal-overlay" id="soModal">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 class="card-title">Issue Wastewater Service Order</h3>
+                <button class="logout-btn" onclick="closeModal('soModal')">✕</button>
+            </div>
+            <form id="soForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label">Select Industrial Factory *</label>
+                        <select id="soFactoryId" class="form-control" required></select>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Service Type *</label>
+                            <input type="text" id="soServiceType" class="form-control" required value="Industrial Effluent Processing">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Service Period</label>
+                            <input type="text" id="soPeriod" class="form-control" placeholder="e.g. October 2026">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Quantity / Months *</label>
+                            <input type="number" id="soQuantity" class="form-control" required min="1" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Unit Price ($) *</label>
+                            <input type="number" id="soUnitPrice" class="form-control" required step="0.01" value="5000.00">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('soModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Service Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/invoices.js"></script>
+</body>
+</html>
